@@ -24,7 +24,10 @@ ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]
 
 # Add group/user
 RUN groupadd -g 1000 buildgroup
-RUN useradd --create-home -d /var/build -s /bin/bash -u 1000 -g 1000 builduser
+RUN useradd --create-home -d /var/build -s /bin/bash -u 1000 -g 1000 -G sudo builduser
+
+# Allow sudo without password
+echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Use bash instead of dash for /bin/sh
 RUN ln -sf bash /bin/sh
