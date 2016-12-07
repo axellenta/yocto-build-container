@@ -6,7 +6,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get -q update && \
     DEBIAN_FRONTEND="noninteractive" apt-get -qq install -y \
         gawk wget git-core diffstat unzip texinfo gcc-multilib \
         build-essential chrpath socat \
-        cpio python3 && \
+        cpio python python3 && \
     apt-get -q clean -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     rm -f /var/cache/apt/*.bin && \
