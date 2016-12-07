@@ -5,7 +5,7 @@ FROM ubuntu:16.04
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -q update && \
     DEBIAN_FRONTEND="noninteractive" apt-get -qq install -y \
         gawk wget git-core diffstat unzip texinfo gcc-multilib \
-        build-essential chrpath socat libsdl1.2-dev xterm \
+        build-essential chrpath socat \
         cpio python3 && \
     apt-get -q clean -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
