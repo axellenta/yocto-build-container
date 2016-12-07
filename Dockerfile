@@ -7,7 +7,10 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get -q update && \
         gawk wget git-core diffstat unzip texinfo gcc-multilib \
         build-essential chrpath socat libsdl1.2-dev xterm \
         cpio python3 && \
-    apt-get -q clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && rm -f /var/cache/apt/*.bin
+    apt-get -q clean -y && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    rm -f /var/cache/apt/*.bin && \
+    rm -fr /usr/share/man/*
 
 # Set up locale to make Python and BitBake happy
 RUN locale-gen en_US.UTF-8
