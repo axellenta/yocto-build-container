@@ -10,7 +10,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get -q update && \
     apt-get -q clean -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     rm -f /var/cache/apt/*.bin && \
-    rm -fr /usr/share/man/*
+    find /usr/share/man -name "*.gz" | xargs rm -f
 
 # Set up locale to make Python and BitBake happy
 RUN locale-gen en_US.UTF-8
@@ -22,7 +22,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get -q update && \
     apt-get -q clean -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     rm -f /var/cache/apt/*.bin && \
-    rm -fr /usr/share/man/*
+    find /usr/share/man -name "*.gz" | xargs rm -f
 
 # A minimal init system for Linux containers
 #  https://engineeringblog.yelp.com/2016/01/dumb-init-an-init-for-docker.html
