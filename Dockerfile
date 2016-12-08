@@ -5,15 +5,15 @@ FROM ubuntu:16.04
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -q update && \
     DEBIAN_FRONTEND="noninteractive" apt-get -qq install -y \
         gawk wget git-core diffstat unzip texinfo gcc-multilib \
-        build-essential chrpath socat \
-        cpio python python3 && \
+        build-essential chrpath socat python3 \
+        cpio python pkgconf && \
     apt-get -q clean -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     rm -f /var/cache/apt/*.bin && \
-    find /usr/share/man -name "*.gz" | xargs rm -f
+    find /usr/share/man -name "*.gz" | xargs rm -f && \
+    locale-gen en_US.UTF-8
 
 # Set up locale to make Python and BitBake happy
-RUN locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 # Install sudo
@@ -26,7 +26,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get -q update && \
 
 # A minimal init system for Linux containers
 #  https://engineeringblog.yelp.com/2016/01/dumb-init-an-init-for-docker.html
-RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64
+RUN wget -q -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64
 RUN chmod +x /usr/local/bin/dumb-init
 ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]
 
