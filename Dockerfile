@@ -26,7 +26,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get -q update && \
 
 # A minimal init system for Linux containers
 #  https://engineeringblog.yelp.com/2016/01/dumb-init-an-init-for-docker.html
-RUN wget -q -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64
+RUN wget -q -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_amd64
 RUN chmod +x /usr/local/bin/dumb-init
 ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]
 
